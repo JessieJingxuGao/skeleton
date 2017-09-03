@@ -1,7 +1,7 @@
 package api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import generated.tables.records.ReceiptsRecord;
+import generated.tables.records.TagRecord;
 
 import java.math.BigDecimal;
 import java.sql.Time;
@@ -21,17 +21,14 @@ public class TagResponse {
     Integer id;
 
     @JsonProperty
-    String Tag;
+    String Tag2;
 
-    @JsonProperty
-    BigDecimal value;
 
     @JsonProperty
     Time created;
 
-    public ReceiptResponse(ReceiptsRecord dbRecord) {
-        this.merchantName = dbRecord.getMerchant();
-        this.value = dbRecord.getAmount();
+    public TagResponse(TagRecord dbRecord) {
+        this.Tag2 = dbRecord.getTag();
         this.created = dbRecord.getUploaded();
         this.id = dbRecord.getId();
     }
