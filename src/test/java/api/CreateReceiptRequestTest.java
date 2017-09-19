@@ -29,14 +29,15 @@ public class CreateReceiptRequestTest {
         CreateReceiptRequest receipt = new CreateReceiptRequest();
         receipt.merchant = "OK";
         //receipt.amount = new BigDecimal(33.44);
+//        amount is optional, only merchant is not empty
         assertThat(validator.validate(receipt), empty());
     }
 
     @Test
     public void testMissingMerchant() {
+//        this should fail because merchant was set to be nonempty
         CreateReceiptRequest receipt = new CreateReceiptRequest();
         receipt.amount = new BigDecimal(33.44);
-
         validator.validate(receipt);
         assertThat(validator.validate(receipt), hasSize(1));
     }

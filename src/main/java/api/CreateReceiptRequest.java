@@ -1,5 +1,7 @@
 package api;
 
+//involve this package to announce the following class created after this is an api object and should have certain functions
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.math.BigDecimal;

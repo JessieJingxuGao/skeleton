@@ -28,6 +28,8 @@ public class ReceiptResponse {
     @JsonProperty
     Time created;
 
+//    @JsonIgnore can modify the jason response if needed
+
     public ReceiptResponse(ReceiptsRecord dbRecord) {
         this.merchantName = dbRecord.getMerchant();
         this.value = dbRecord.getAmount();

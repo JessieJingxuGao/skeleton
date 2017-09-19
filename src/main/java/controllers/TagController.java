@@ -1,71 +1,95 @@
 package controllers;
 
-import api.CreateTagRequest;
-import api.TagResponse;
+//import api.CreateTagRequest;
+//import api.TagResponse;
+import api.ReceiptResponse;
+
 import dao.TagDao;
-import generated.tables.records.TagRecord;
+import dao.ReceiptDao;
+
+import generated.tables.records.TagsRecord;
+import generated.tables.records.ReceiptsRecord;
+
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+import java.util.ArrayList;
+import javax.ws.rs.core.Response;
 
 import static java.util.stream.Collectors.toList;
 
-@Path("/receipts")
+@Path("/tags/{tag}")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class ReceiptController {
+public class TagController {
     final ReceiptDao receipts;
+    final TagDao tags;
 
-    public ReceiptController(ReceiptDao receipts) {
+
+    public TagController(TagDao tags, ReceiptDao receipts) {
+        this.tags = tags;
         this.receipts = receipts;
     }
 
-    @POST
-    public int createReceipt(@Valid @NotNull CreateReceiptRequest receipt) {
-        return receipts.insert(receipt.merchant, receipt.amount);
-//        receipts from receiptdao (db connection)
-//        receipt is the parameter...
+
+    @PUT
+    public String toggleTag(@PathParam("tag") String tag, int receiptid) {
+        System.out.println(tag);
+        System.out.println(receiptid);
+
+        if (!receipts.idExists(receiptid)) {
+            return "no such receiptid";
+        }
+
+        if (!receipts.idExists(receiptid)) {
+            throw new WebApplicationException("This receipt id does not exist", Response.Status.NOT_FOUND);
+        }
+
+
+        // find or create tag by tagname and receiptid
+        // first find if exists this tag, if yes, find if there is link to the receipt id, if yes,delete;no,create
+        // if no, create this tag, and link this tag to receiptid
+        if (tags.tagExists(tag)) {
+            int tagid = tags.getTagid(tag);
+            if (tags.tagreceiptExists(tagid, receiptid)) {
+                tags.delete(tagid, receiptid);
+                return "untag";
+            } else {
+                tags.insertTagReceipt(tagid, receiptid);
+                return "tag";
+            }
+        } else {
+            int tagid = tags.insert(tag);
+            System.out.println("tagid created is");
+            System.out.println(tagid);
+            tags.insertTagReceipt(tagid, receiptid);
+            return "tag";
+        }
+
     }
 
     @GET
-    public List<ReceiptResponse> getReceipts() {
-        List<ReceiptsRecord> receiptRecords = receipts.getAllReceipts();
-        return receiptRecords.stream().map(ReceiptResponse::new).collect(toList());
+    public List<ReceiptResponse> getTagReceipts(@NotNull @PathParam("tag") String tag) {
+        System.out.println(tag);
+        if (!tags.tagExists(tag)) {
+            throw new WebApplicationException("this tag does not exist",
+                    Response.Status.NOT_FOUND);}
 
+            int tagid = tags.getTagid(tag);
+            List<Integer> receiptIDs = receipts.getReceiptIdByTagid(tagid);
 
+            // search through the receipt table to retrieve all the receipt with certain tag id
+            List<ReceiptsRecord> ReceiptRecords = new ArrayList<ReceiptsRecord>();
 
-//        @PUT
-//        @Path("/tags/{tag}")
-//        public void toggleTag(@PathParam("tag") String tagName) {
-//            // <your code here
-//        }
+            for (int id : receiptIDs) {
+                ReceiptRecords.add(receipts.getReceiptFromID(id));
+            }
 
-//        def put_tags(rid, tag):
-//        url = URL + "/tags/{}".format(tag)
-//        d = rid
-//        r = requests.put(url, json=d)
-//        if not r.ok:
-//        print("Failed while PUTting {} with json={!r}".format(url, d))
-//        return -1
-//        return 0
-//
-//
-//        def get_receipts_by_tag(tag):
-//        url = URL + "/tags/{}".format(tag)
-//        r = requests.get(url)
-//        if not r.ok:
-//        print("ERROR: Failed while GETting {}".format(url))
-//        return -1
-//        return r.json()
-
-//
+            return ReceiptRecords.stream().map(ReceiptResponse::new).collect(toList());
+        }
 
     }
-}
 
-
-//receipts: db connection
-//receipt: parameter

@@ -2,7 +2,10 @@ package controllers;
 
 import api.CreateReceiptRequest;
 import api.ReceiptResponse;
+
+
 import dao.ReceiptDao;
+import dao.TagDao;
 import generated.tables.records.ReceiptsRecord;
 
 import javax.validation.Valid;
@@ -26,19 +29,15 @@ public class ReceiptController {
     @POST
     public int createReceipt(@Valid @NotNull CreateReceiptRequest receipt) {
         return receipts.insert(receipt.merchant, receipt.amount);
-//        receipts from receiptdao (db connection)
-//        receipt is the parameter...
     }
 
     @GET
     public List<ReceiptResponse> getReceipts() {
         List<ReceiptsRecord> receiptRecords = receipts.getAllReceipts();
         return receiptRecords.stream().map(ReceiptResponse::new).collect(toList());
-
-
     }
+    /*public String getReceipts() {
+        List<ReceiptsRecord> receiptRecords = receipts.getAllReceipts();
+        return receiptRecords.toString();
+    }*/
 }
-
-
-//receipts: db connection
-//receipt: parameter
