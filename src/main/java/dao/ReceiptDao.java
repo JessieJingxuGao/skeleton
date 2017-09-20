@@ -2,9 +2,6 @@ package dao;
 
 import api.ReceiptResponse;
 
-//import generated.tables.Receipts;
-//import generated.tables.Tagreceipts;
-
 import static generated.Tables.RECEIPTS;
 import static generated.Tables.TAGS;
 import static generated.Tables.TAGRECEIPTS;
