@@ -1,6 +1,7 @@
 package dao;
 
 import api.ReceiptResponse;
+import api.TagResponse;
 
 import static generated.Tables.RECEIPTS;
 import static generated.Tables.TAGS;
@@ -42,13 +43,16 @@ public class ReceiptDao {
     }
 
     public List<ReceiptsRecord> getAllReceipts() {
-        System.out.println(dsl.selectFrom(RECEIPTS).fetch());
+        System.out.println();
         return dsl.selectFrom(RECEIPTS).fetch();
     }
 
+
+
+
     // return all the receiptsid defined by a tagid (first find the receripts.id
     // by tagid from tagreceipts, then return all the receipts by the receipts.id
-    public ReceiptsRecord getReceiptFromID(int id){
+    public ReceiptsRecord getReceiptFromID(int id) {
         return dsl.selectFrom(RECEIPTS).where(RECEIPTS.ID.eq(id)).fetchOne();
     }
 

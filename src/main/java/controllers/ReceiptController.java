@@ -40,4 +40,6 @@ public class ReceiptController {
         List<ReceiptsRecord> receiptRecords = receipts.getAllReceipts();
         return receiptRecords.toString();
     }*/
+
 }
+

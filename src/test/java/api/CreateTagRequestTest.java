@@ -13,6 +13,8 @@ import static org.hamcrest.collection.IsEmptyCollection.empty;
 public class CreateTagRequestTest {
     private final Validator validator = Validators.newValidator();
 
+//not needed as we just use input.val() and receipt-id from dom to get tagging related information
+
 
 //    @Test
 //    public void testValid() {

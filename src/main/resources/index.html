@@ -1,53 +1,238 @@
-<!--<!DOCTYPE html>-->
-<!--<html>-->
 
-<!--<head>-->
-    <!--<link rel="stylesheet" href="style.css" />-->
-    <!--<script data-require="jquery@*" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
-    <!--<style>-->
-        <!--#container {border: 1px solid brown;}-->
-        <!--H1 {float: left;}-->
-        <!--.button{-->
-            <!--background-color:#55A;-->
-            <!--border: 1px solid #229;-->
-            <!--width: 100px;-->
-            <!--float: right;-->
-            <!--font-size: 2em;-->
-            <!--color: white;-->
-            <!--text-align: center;-->
-        <!--}-->
-        <!--#receiptList {-->
-            <!--border: 1px solid green;-->
-            <!--clear: both;-->
-        <!--}-->
-        <!--.receipt {-->
-            <!--background-color: #eee;-->
-            <!--margin-bottom: 5px;-->
-        <!--}-->
-    <!--</style>-->
-    <!--<script>-->
-        <!--// This is the idiomatic way to ensure that JQuery does not-->
-        <!--// execute until the page has loaded-->
-        <!--$(function(){-->
-            <!--const api = ""; // <- do not need a root api URL if this page is served directly by the API-->
-            <!--$.getJSON(api+"/receipts", function(receipts){-->
-                <!--for(var i=0; i < receipts.length; i++) {-->
-                    <!--var receipt = receipts[i];-->
-                    <!--$(`<div class="receipt">${receipt.merchantName}<div><span class="receiptTag">t1</span></div></div>`)-->
-                        <!--.appendTo($("#receiptList"));-->
-                <!--}-->
-            <!--})-->
-        <!--})-->
-    <!--</script>-->
-<!--</head>-->
 
-<!--<body>-->
-<!--<DIV id="container">-->
-    <!--<h1>My receipts</h1>-->
-    <!--<div class="button">+</div>-->
-    <!--<div id="receiptList">-->
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Jessie Gao - CS5356</title>
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+    <meta charset="UTF-8">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <script data-require="jquery@*" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+    <script type="text/javascript" src="script.js"></script>
+
+
+
+
+
+
+</head>
+
+
+
+
+
+<body>
+
+<div class="text-center">
+    <div class="row">
+        <h1> Receipt Management System </h1>
+    </div>
+</div>
+
+
+<div class="container text-center">
+    <!-- boostrap grid must be put inside container -->
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            <!-- Trigger the modal with a button learn from https://www.w3schools.com/bootstrap/bootstrap_modal.asp -->
+            <button id="add-receipt" type="button" class="btn btn-info"
+                    data-toggle="modal" data-target="#add-receipt-modal">
+                <!-- <span class="glyphicons glyphicons-user"></span> -->
+                <!-- cannot recognize this icon -->
+                <span class="glyphicons glyphicons-keyboard-wireless"></span>
+                Type to add
+            </button>
+        </div>
+        <div class="col-md-2">
+            <button id="start-camera" type="button" class="btn btn-info" onclick="startVideo()"
+                    data-toggle="modal" data-target="#camera-receipt-modal">
+
+                <!--we use the same button of start modal & start-camera thus not need to-->
+                <!--// $('#camera-receipt－modal').on('show.bs.modal', function (e) {-->
+                <!--//     $("#takephoto").attr("style", "display:block;");-->
+                <!--//     ToGetUserMedia();-->
+                <!--// })-->
+
+                <span class="glyphicon glyphicon-camera"></span>
+                Camera to add
+            </button>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            <!--<button id="start-upload" type="button" class="btn btn-info"-->
+                    <!--data-toggle="modal" data-target="#upload-receipt－modal">-->
+                <!--test:upload-image-->
+            <!--</button>-->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <h3>Time</h3>
+        </div>
+        <div class="col-md-3">
+            <h3>Merchant</h3>
+        </div>
+        <div class="col-md-3">
+            <h3>Amount</h3>
+        </div>
+        <div class="col-md-3">
+            <h3>Tag</h3>
+        </div>
+    </div>
+
+    <div id="receiptList">
+        <!-- later use jquery to append html for receipts here-->
+        <!--class="row" <=> each receipt-->
+        <!-- later Every receipt must be represented by a single element of the form <DIV class="receipt"> -->
+    </div>
+
+</div>  <!-- for end of container -->
+
+
+
+
+<!-- Modal for type-to-add-receipt learn from https://v4-alpha.getbootstrap.com/components/modal/ -->
+<div id="add-receipt-modal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Type to add receipt</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Modal body-->
+            <div class="modal-body">
+                <!-- form group here containing the required input element, learn from https://www.w3schools.com/bootstrap/bootstrap_forms.asp -->
+                <form role="form">
+                    <div class="form-group">
+                        <label for="merchant" class="form-control-label">Merchant:</label>
+                        <input id="merchant" type="text" class="form-control" placeholder="Please input merchant name, required"></input>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount" class="form-control-label">Amount:</label>
+                        <input id="amount" type="number" class="form-control" placeholder="Amount (will round to 2-decimal number), optional"></input>
+                        <!-- in database schema, the amount is defined DECIMAL(12,2) in later javascript we will round to two-decimal -->
+                    </div>
+                </form>
+            </div>
+            <!-- Modal footer-->
+            <div class="modal-footer">
+                <button id="cancel-receipt" type="button" class="btn btn-danger" data-dismiss="modal" onclick="cancelReceiptFun()">Cancel</button>
+                <!--cancelReceiptFun is only erasing current input-->
+                <button id="save-receipt" type="button" class="btn btn-primary" onclick="saveReceiptFun()" >Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal for type-to-add-receipt learn from https://v4-alpha.getbootstrap.com/components/modal/ -->
+<div id="camera-receipt-modal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel2">Camera to add receipt</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Modal body-->
+            <div class="modal-body">
+                <!--nonedisplay-->
+                <div class="row" id="takephoto">
+                    <div id="vidwrap">
+                        <video autoplay></video>
+                        <!--the source is from js ToGetUserMedia & attach steam to this video element -->
+                    </div>
+                </div>
+
+
+                <!--<button id="take-pic" type="button" class="btn btn-primary" onclick="takeSnapshot()">Yes</button>-->
+
+                <div class="row  nonedisplay" id="photocanvas">
+                        <canvas id="canvas"></canvas>
+                    <!--we will set the size in js later to make them the same size-->
+                </div>
+
+
+            </div>
+            <!-- Modal footer-->
+            <div class="modal-footer">
+                <button id="take-pic-cancel" type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <button id="take-pic" type="button" class="btn btn-primary" onclick="takeSnapshot()">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!--&lt;!&ndash; Modal for type-to-add-receipt learn from https://v4-alpha.getbootstrap.com/components/modal/ &ndash;&gt;-->
+<!--<div id="upload-receipt－modal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">-->
+    <!--<div class="modal-dialog" role="document">-->
+        <!--&lt;!&ndash; Modal content&ndash;&gt;-->
+        <!--<div class="modal-content">-->
+            <!--<div class="modal-header">-->
+                <!--<h4 class="modal-title" id="exampleModalLabel3">Upload to add receipt</h4>-->
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                    <!--<span aria-hidden="true">&times;</span>-->
+                <!--</button>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; Modal body&ndash;&gt;-->
+            <!--<div class="modal-body">-->
+                    <!--This is for test-->
+            <!--</div>-->
+            <!--&lt;!&ndash; Modal footer&ndash;&gt;-->
+            <!--<div class="modal-footer">-->
+                <!--<button id="upload-img-cancel" type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>-->
+                <!--<button id="upload-img" type="button" class="btn btn-primary">Upload</button>-->
+            <!--</div>-->
+        <!--</div>-->
     <!--</div>-->
-<!--</DIV>-->
-<!--</body>-->
+<!--</div>-->
 
-<!--</html>-->
+<!--<button id="start" onclick="startVideo()">Start Video</button>-->
+<!--<button id="snapshot" disabled="true" onclick="takeSnapshot()">Take a Snapshot!</button>-->
+<!--<div id="vidwrap">-->
+    <!--<video > </video>-->
+    <!--&lt;!&ndash;<video autoplay onplay="forSnapshot()"></video>&ndash;&gt;-->
+<!--</div>-->
+
+<!--<button type="button" class="btn btn-default" onclick="showcamera()" id="ccccamera">-->
+    <!--<span class="glyphicon glyphicon-camera"></span> Camera-->
+<!--</button>-->
+
+<!--<video id="video" autoplay>  </video>-->
+<!--&lt;!&ndash;width="320" height="240"&ndash;&gt;-->
+
+
+
+
+</body>
+
+
+
+
+
+
+</html>

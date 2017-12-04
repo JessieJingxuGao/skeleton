@@ -21,3 +21,9 @@ EXPOSE 8080
 
 # When a new container is created, the server program should be run.
 ENTRYPOINT ["/skeleton/bin/skeleton", "server", "appconfig.yml"]
+
+
+
+# Add your GCP Service Account API File to the Docker Image
+ADD gc_api_file.json /skeleton/gc_api_file.json
+ENV GOOGLE_APPLICATION_CREDENTIALS=/skeleton/gc_api_file.json

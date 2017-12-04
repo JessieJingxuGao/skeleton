@@ -1,0 +1,102 @@
+/*------------------------------------------------------------*/
+/*html emelents shown in index.html which don't need jquery to add*/
+.container {
+    /*margin-top: 50px;*/
+    /*margin-top: 5%;*/
+}
+/*boostrap grid must be put inside container */
+
+
+#receiptList {
+    border: 2px solid black;
+    clear: both;
+}
+/*All receipts should be under a DIV with the id receiptList. E.g., <DIV id='receiptList'...</DIV> node.*/
+
+.receipt {
+    color: darkgrey;
+    font-size:medium;
+}
+/*Every receipt must be represented by a single element of the form <DIV class="receipt">...</DIV>.
+The receipt element may have any internal structure you desire*/
+
+
+
+#add-receipt{
+}
+/*The add button for receipts MUST have id add-receipt and be selectable*/
+/*this is different from #add-receipt－modal which is used for modal rather than button id*/
+
+
+#start-camera{
+}
+/*a button your page (preferably beside the current add button
+for receipts) for starting the camera. The button should be selectable
+by the selector $('#start-camera'). Clicking the button should start the camera.*/
+
+
+
+#merchant{
+}
+#amount{
+}
+/*must use INPUT elements for the ‘merchant’ and ‘amount’ entry,
+and the INPUT elements must have id's #merchant and #amount.*/
+
+
+#save-receipt{
+}
+#cancel-receipt{
+}
+/*save and cancel button must have ids save-receipt and cancel-receipt and respond to click events.*/
+
+/*------------------------------------------------------------*/
+/*later are added using jquery thus html strings in script.js*/
+
+
+#take-pic-cancel{
+}
+/*There should be a cancel button that should close the video and should cancel the
+process of adding a receipt. The id of that button shouold be take-pic-cancel.*/
+
+#take-pic{
+}
+/*There should be a button selectable by $('#take-pic'), clicking which will capture the photo.
+ Also, once the #take-pic is clicked it should trigger a call to the backend to run OCR on the
+ taken image using Google Vision API.*/
+
+
+
+.merchant {
+    /*text-align: left;*/
+}
+.amount {
+    /*text-align: right;*/
+}
+.tag{
+}
+/*very receipt must have the following fields available: merchant, amount and tags
+& must be selectable using the JQuery selector*/
+
+.add-tag {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.tag_input {
+}
+/*Every receipt row must have a button with class add-tag that responds to click events.
+When clicked, an INPUT element with class tag_input must be added to the DOM as a child of the receipt row upon which add-tag was clicked*/
+
+
+.tagValue {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+body {text-align: center;}
+video { width: 300px; height: 600px; border: 1px solid black; }
+#vidwrap {margin: 20px 0;}
+#snapshot {height:3em;}
