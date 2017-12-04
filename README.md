@@ -4,14 +4,14 @@ A receipt management system
 
 [![CircleCI](https://circleci.com/gh/JessieJingxuGao/skeleton.svg?style=svg)](https://circleci.com/gh/JessieJingxuGao/skeleton)
 
-============
+============  
 
 A super simple one-page application built on scalable RESTful HTTP servers.
 1. Users can type to add a receipt.
 2. Uses can take a picture and adjust the auto-detected merchant_name and rececipt_amount to add a receipt. It's implemented by Google OCR Text Detection API. <span style="background-color: #FFFF00">As the processing might take some time, please wait at "type_to_input" modal for a while to get the suggested information retrieved.</span>
 3. Users can add & delete tags to each receipt.
 
-============
+============  
 It's deploed to AWS using Docker. Link to server: http://ec2-52-34-171-107.us-west-2.compute.amazonaws.com:8080/
 - Please open in Chrome. GetUserMedia curently doesn't support FireFox.
 - To see how user interaction with "type-to-add-tag"
@@ -30,7 +30,7 @@ If you want to allow the access to the camera, you will need to <span style="bac
 ~~~~
 
 
-For a video showing the user interaction and system diagram, please refer to  [this google drive folder](https://drive.google.com/drive/folders/1mZ9SqE72frTdznpMlsI2QLZK19jHCFY9?usp=sharing).
+For a video showing the user interaction and the system diagram, please refer to  [this google drive folder](https://drive.google.com/drive/folders/1mZ9SqE72frTdznpMlsI2QLZK19jHCFY9?usp=sharing).
 
 
 ============
