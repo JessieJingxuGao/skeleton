@@ -12,9 +12,13 @@ A super simple one-page application built on scalable RESTful HTTP servers.
 3. Users can add & delete tags to each receipt.
 
 ============  
+
+For videos showing the user interaction, please refer to  [this google drive folder](https://drive.google.com/drive/folders/1mZ9SqE72frTdznpMlsI2QLZK19jHCFY9?usp=sharing). When running on aws, type-to-add-receipt and camera-to-add-receipt will need different commands line to open Chrome in disabled security mode.
+
+
 It's deploed to AWS using Docker. Link to server: http://ec2-52-34-171-107.us-west-2.compute.amazonaws.com:8080/
 - Please open in Chrome. GetUserMedia curently doesn't support FireFox.
-- To see how user interaction with "type-to-add-tag"
+- To see how user interaction with "type-to-add-receipt"
 As Modern browser security restricts scripts running on particular domains to that domain only. If you are developing and encounter errors regarding Mixed Media or Same-origin policy, you can cautiously consider disabling security in your browser for development purposes. To do this on OSX, you must <span style="background-color: #FFFF00">quit Chrome completely and then start Chrome from the command-line with special flags</span>:
 
 ~~~~
@@ -28,10 +32,6 @@ If you want to allow the access to the camera, you will need to <span style="bac
 ~~~~
 /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --unsafely-treat-insecure-origin-as-secure="http://ec2-52-34-171-107.us-west-2.compute.amazonaws.com:8080/" --user-data-dir=/tmp
 ~~~~
-
-
-For a video showing the user interaction and the system diagram, please refer to  [this google drive folder](https://drive.google.com/drive/folders/1mZ9SqE72frTdznpMlsI2QLZK19jHCFY9?usp=sharing).
-
 
 ============
 
