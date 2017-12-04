@@ -280,26 +280,84 @@ $(function () {
 
 // $('#save-receipt').click(function ()
 // OTHERSISE it doesn't work -must use onclick in html element
+
 function saveReceiptFun()
 {
     console.log("clicked save-receipt")
-    merchant = $('#merchant').val();
-    amount = $('#amount').val();
-    if (merchant == '') {
-        swal(
-            'Merchant cannot be empty'
-        );
-        return
-    }
-    amount = parseFloat(amount).toFixed(2);
-    // amount is optional so can be NaN
-    // input is set to type "number" thus will not have type error issues ??
-    // When you call toFixed on NaN you get "NaN" as well.
+    // merchant = $('#merchant').val();
+    // amount = $('#amount').val();
 
-    receiptJsonInput = {
-        "merchant": merchant,
-        "amount": amount
-    };
+    // if (merchant == '') {
+    //     swal(
+    //         'Merchant cannot be empty'
+    //     );
+    //     return
+    // }
+
+    var merchant = $("#merchant").val();
+    var amount = $("#amount").val();
+
+
+    if (merchant==''){
+        alert('Merchant cannot be empty');
+    }
+    else{
+
+        // in html I have made sure input can only be number!!!!!
+    // <input id="amount" type="number"
+
+        // but if it's NaN it might return a string "NaN"
+
+        if (isNaN(amount)==true || amount=="NaN" || amount.trim() == "")
+        // later deal with empty "   "
+        //     || amount=='' and regular expression or jquery like this
+        //     || amount.trim() == ""
+        {
+            receiptJsonInput={"merchant":merchant};
+            alert("Amount must be a number or kept empty! If input is empty, the amount will be recorded as null");
+        }
+        else
+        {
+            amount = parseFloat(amount).toFixed(2);
+            // amount is optional so can be NaN
+            // input is set to type "number" thus will not have type error issues ??
+            // When you call toFixed on NaN you get "NaN" as well.
+
+            receiptJsonInput = {"merchant": merchant, "amount": amount};
+
+            // if(typeof amount == 'number')
+            // //amount is never a number
+            //     // if(parseFloat(amount) === amount)
+            // // equal value and equal type "==="
+            // //     Number.parseFloat(amount)
+            // {
+            //     amount = parseFloat(amount).toFixed(2);
+            //     // amount is optional so can be NaN
+            //     // input is set to type "number" thus will not have type error issues ??
+            //     // When you call toFixed on NaN you get "NaN" as well.
+            //
+            //     receiptJsonInput = {"merchant": merchant, "amount": amount};
+            // }
+            // else
+            // {
+            //     alert("Amount must be a number or empty!")
+            // }
+
+        }
+
+        }
+
+
+
+    console.log("see how js will output so we can see how to fix nan")
+    console.log(receiptJsonInput)
+
+    // receiptJsonInput = {
+    //     "merchant": merchant,
+    //     "amount": amount
+    // };
+
+
     $.ajax({
         headers: {
             'Accept': 'application/json', // or */*
@@ -322,7 +380,8 @@ function saveReceiptFun()
         error: function () {
             alert('Create receipt Error!')
             // alert(exception);
-            swal('Create receipt Error!');
+            // swal('Create receipt Error!');
+            // swal is too ugly
             $('#cancel-receipt').click();
 
         }
