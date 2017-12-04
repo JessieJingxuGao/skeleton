@@ -12,8 +12,6 @@ A super simple one-page application built on scalable RESTful HTTP servers.
 3. Users can add & delete tags to each receipt.
 
 ============
-
-For a video showing the user interaction and system diagram, please refer to  [this google drive folder](https://drive.google.com/drive/folders/1mZ9SqE72frTdznpMlsI2QLZK19jHCFY9?usp=sharing).
 It's deploed to AWS using Docker. Link to server: http://ec2-52-34-171-107.us-west-2.compute.amazonaws.com:8080/
 - Please open in Chrome. GetUserMedia curently doesn't support FireFox.
 - To see how user interaction with "type-to-add-tag"
@@ -30,6 +28,10 @@ If you want to allow the access to the camera, you will need to <span style="bac
 ~~~~
 /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --unsafely-treat-insecure-origin-as-secure="http://ec2-52-34-171-107.us-west-2.compute.amazonaws.com:8080/" --user-data-dir=/tmp
 ~~~~
+
+
+For a video showing the user interaction and system diagram, please refer to  [this google drive folder](https://drive.google.com/drive/folders/1mZ9SqE72frTdznpMlsI2QLZK19jHCFY9?usp=sharing).
+
 
 ============
 
