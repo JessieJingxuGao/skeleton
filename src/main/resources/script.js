@@ -464,6 +464,13 @@ function takeSnapshot() {
             // console.log(base64EncodedImageData);
             // console.log("should have hided camera modal");
 
+    //
+    // // write the image to a file
+    // String filename = getUniqueName();
+    // File outputfile = new File("./" + filename + ".png");
+    // ImageIO.write(img, "png", outputfile);
+    //
+    //
             $.ajax({
 
                 headers:
@@ -488,10 +495,15 @@ function takeSnapshot() {
 
                     var amount = msg["amount"];
                     var merchant = msg["merchantName"]
-                    // $("#merchant").val(merchant);
-                    // $("#amount").val(amount);
-                    $('#merchant').attr('placeholder',merchant);
-                    $('#amount').attr('placeholder',amount);
+
+
+                    $("#merchant").val(merchant);
+                    $("#amount").val(amount);
+
+                    // user channot change this
+                    // $('#merchant').attr('placeholder',merchant);
+                    // $('#amount').attr('placeholder',amount);
+
                     // document.getElementsByName('Email')[0].placeholder='new text for email';
 
 

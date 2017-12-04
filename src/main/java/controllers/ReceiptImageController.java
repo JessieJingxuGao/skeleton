@@ -60,27 +60,46 @@ public class ReceiptImageController {
 //    }
 
 
-        public static boolean isNumeric(String str)
-        {
+    // https://stackoverflow.com/questions/308122/simple-regular-expression-for-a-decimal-with-a-precision-of-2
 
-            if (null == str || "".equals(str)) {
-                return false;
-            }
 
-            Pattern pattern = Pattern.compile("^[-\\+]?[.\\d]*$");
-            Matcher isNum = pattern.matcher(str);
-            if( !isNum.matches() )
-            {
-                return false;
-            }
-            return true;
+    public static boolean isNumeric(String str)
+    {
+        if (null == str || "".equals(str)) {
+            return false;
         }
+
+        try
+        {
+            double d = Double.parseDouble(str);
+        }
+        catch(NumberFormatException nfe)
+        {
+            return false;
+        }
+        return true;
+    }
+
+//        public static boolean isNumeric(String str)
+//        {
+//
+//            if (null == str || "".equals(str)) {
+//                return false;
+//            }
+//
+//            Pattern pattern = Pattern.compile("^[-\\+]?[.\\d]*$");
+//            Matcher isNum = pattern.matcher(str);
+//            if( !isNum.matches() )
+//            {
+//                return false;
+//            }
+//            return true;
+//        }
 
 
     //Regular Expression (Regexe) in Java- includes two-digital
 // ^ to start
 // $:Checks if a line end follows
-// https://stackoverflow.com/questions/308122/simple-regular-expression-for-a-decimal-with-a-precision-of-2
 
 
     /**
@@ -119,13 +138,17 @@ public class ReceiptImageController {
 //
 ////            curl  -H 'Content-Type: text/plain' --data "@./base_64_data.txt" localhost:8080/images
 //
-//            for (EntityAnnotation annotation : res.getTextAnnotationsList()) {
-//                    out.printf("Position : %s\n", annotation.getBoundingPoly());
-////                location of four corners of that strin
-//                    out.printf("Text: %s\n", annotation.getDescription());
-////                text
-//                    }
 
+//            for checking
+            for (EntityAnnotation annotation : res.getTextAnnotationsList()) {
+                    out.printf("Position : %s\n", annotation.getBoundingPoly());
+//                location of four corners of that strin
+                    out.printf("Text: %s\n", annotation.getDescription());
+//                text
+                    }
+
+
+            //sometimes it will read everthing and put into one annotation
 
             for (EntityAnnotation annotation : res.getTextAnnotationsList()) {
                 String name=annotation.getDescription();
@@ -135,6 +158,8 @@ public class ReceiptImageController {
 //                    the first one
 //                    so we  don't need to getBoundingPoly() as it will return this from beginning to bottom
                 }
+
+
 
             }
             for (EntityAnnotation annotation : res.getTextAnnotationsList()) {
@@ -148,6 +173,9 @@ public class ReceiptImageController {
                 }
 
             }
+
+
+
 
             return new ReceiptSuggestionResponse(merchantName, amount);
             // don't need to worry about number of digits, we round it to 2 decimal when doing post to /receipt

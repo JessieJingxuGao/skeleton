@@ -1,11 +1,26 @@
-[![CircleCI](https://circleci.com/gh/amfleming/skeleton.svg?style=svg)](https://circleci.com/gh/amfleming/skeleton)
 
 
-skeleton
+A receipt management system
+
 ============
-A super simple foundation for building a scalable RESTful HTTP servers
 
-To build and run with docker:
-1. Run `./gradlew distTar` _this tells gradle to make a .tar file containing the java application code and all dependencies_
-2. Run `docker build -t myapp .` _this runs the Dockerfile, and builds an image tagged with `myapp`.  See all images with `docker images`_
-3. Run `docker run -p 80:8080 myapp` _this runs the `myapp` image, routing port 80 on **Your Machine** to port 8080 in **the container**_
+A super simple one-page application built on scalable RESTful HTTP servers.
+1. Users can type to add a receipt.
+2. Uses can take a picture and adjust the auto-detected merchant_name and rececipt_amount to add a receipt. It's implemented by Google OCR Text Detection API.
+3. Users can add & delete tags to each receipt.
+
+============
+
+For a video showing the user interaction, please refer to UserVideo.mp4.
+It's deploed to AWS using Docker. Link to server: 
+- Please open in Chrome. GetUserMedia curently doesn't support FireFox.
+For system diagram, please refer to Loop.png.
+
+============
+
+Some remaining problems to be fixed:
+1. The craation time of each receipt will be changed to month/year/date/time rather than just time.
+2. It shall allow users to input non 2-decimal but any valid number.
+3. Currrent Text Detection tends to put too many characters in to merchant name and it cannot deal with the $ sign before the amount.
+
+
