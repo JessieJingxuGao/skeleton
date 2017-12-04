@@ -12,7 +12,7 @@ A super simple one-page application built on scalable RESTful HTTP servers.
 ============
 
 For a video showing the user interaction, please refer to UserVideo.mp4.
-It's deploed to AWS using Docker. Link to server: 
+It's deploed to AWS using Docker. Link to server: http://ec2-52-34-107-60.us-west-2.compute.amazonaws.com:8080
 - Please open in Chrome. GetUserMedia curently doesn't support FireFox.
 For system diagram, please refer to Loop.png.
 
