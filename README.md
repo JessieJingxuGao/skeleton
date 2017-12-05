@@ -21,10 +21,6 @@ It's deploed to AWS using Docker. Link to server: http://ec2-52-34-171-107.us-we
 - To see how user interaction with "type-to-add-receipt"
 As Modern browser security restricts scripts running on particular domains to that domain only. If you are developing and encounter errors regarding Mixed Media or Same-origin policy, you can cautiously consider disabling security in your browser for development purposes. To do this on OSX, you must <span style="background-color: #FFFF00">quit Chrome completely and then start Chrome from the command-line with special flags</span>:
 
-[//]: # (~~~~)
-[//]: # ( /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --allow-running-insecure-content --args --disable-)[//]: # (web-security --user-data-dir=/test/only/dir)
-[//]: # (~~~~)
-
 ~~~~
 /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --allow-running-insecure-content --args --disable-web-security --user-data-dir
 ~~~~
