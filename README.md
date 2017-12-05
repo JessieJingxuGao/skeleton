@@ -25,6 +25,8 @@ As Modern browser security restricts scripts running on particular domains to th
 /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --allow-running-insecure-content --args --disable-web-security --user-data-dir
 ~~~~
 
+Or you can use Firefox with CorsE plug in.
+
 - To see how user interact with "camera-to-add-receipt"
 As Chrome only allows access to devices (the camera) in Secure Contexts. That means SSL-enabled websites, and when developing using localhost.
 If you want to allow the access to the camera, you will need to <span style="background-color: #FFFF00">set a special flag (run the following code in terminal)</span>:
