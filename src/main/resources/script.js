@@ -584,7 +584,8 @@ function takeSnapshot() {
 
     } // function with img captured as input
     ); //after having image
-
+    // getTags()
+    // don't know why it might disappear
 } // takeSnape()
 
 //         success: function (msg,status, jqXHR) {
