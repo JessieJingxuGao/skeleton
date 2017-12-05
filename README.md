@@ -40,6 +40,8 @@ If you want to allow the access to the camera, you will need to <span style="bac
 Some remaining issues to be fixed:
 1. The creation time of each receipt will be changed to month/year/date/time rather than just time.
 2. Currrent Text Detection tends to put too many characters in to merchant name (this migtht be solved by later playing with the bounding polygon feature to each description of a captured string of text). Also it cannot deal with the $ sign before the amount.
+3. The database is currently local.
+4. It would be good to have user identification session later.
 
 
 
