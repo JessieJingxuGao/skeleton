@@ -18,18 +18,16 @@ For videos showing the user interaction, please refer to  [this google drive fol
 
 It's deploed to AWS through Docker image. Link to server: http://ec2-52-34-171-107.us-west-2.compute.amazonaws.com:8080/
 - Please open in Chrome. GetUserMedia curently doesn't support FireFox.
-- To see how user interaction with "type-to-add-receipt"
-As Modern browser security restricts scripts running on particular domains to that domain only. If you are developing and encounter errors regarding Mixed Media or Same-origin policy, you can cautiously consider disabling security in your browser for development purposes. To do this on OSX, you must <span style="background-color: #FFFF00">quit Chrome completely and then start Chrome from the command-line with special flags</span>:
-
+- To see how user interact with "type-to-add-receipt":  
+As Modern browser security restricts scripts running on particular domains to that domain only. So you can cautiously consider disabling security in your browser. To do this on OSX, you must <span style="background-color: #FFFF00">quit Chrome completely and then start Chrome from the command-line with special flags</span>:
 ~~~~
 /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --allow-running-insecure-content --args --disable-web-security --user-data-dir
 ~~~~
 
-Or you can use Firefox with CorsE plug in.
+Or you can use Firefox with CorsE plug-in.
 
-- To see how user interact with "camera-to-add-receipt"
-As Chrome only allows access to devices (the camera) in Secure Contexts. That means SSL-enabled websites, and when developing using localhost.
-If you want to allow the access to the camera, you will need to <span style="background-color: #FFFF00">set a special flag (run the following code in terminal)</span>:
+- To see how user interact with "camera-to-add-receipt":  
+As Chrome only allows access to devices (the camera) in Secure Contexts, which means SSL-enabled websites (or using localhost). If you want to allow the access to the camera, you will need to <span style="background-color: #FFFF00">set a special flag (run the following code in terminal)</span>:
 
 ~~~~
 /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --unsafely-treat-insecure-origin-as-secure="http://ec2-52-34-171-107.us-west-2.compute.amazonaws.com:8080/" --user-data-dir=/tmp
