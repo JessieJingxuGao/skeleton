@@ -2,6 +2,7 @@
 
 A receipt management system
 
+Circle CI Badge:  
 [![CircleCI](https://circleci.com/gh/JessieJingxuGao/skeleton.svg?style=svg)](https://circleci.com/gh/JessieJingxuGao/skeleton)
 
 ============  
