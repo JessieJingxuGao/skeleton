@@ -16,8 +16,7 @@ A super simple one-page application built on scalable RESTful HTTP servers.
 
 For videos showing the user interaction, please refer to  [this google drive folder](https://drive.google.com/drive/folders/1mZ9SqE72frTdznpMlsI2QLZK19jHCFY9?usp=sharing). When running on aws, type-to-add-receipt and camera-to-add-receipt will need different commands line to open Chrome in disabled security mode.
 Video Links:  
-[AWS](https://drive.google.com/open?id=1Kg0SKRc3qHv15WNZ3K_Vf_9u7Mfg_X-R)
-[local](https://drive.google.com/open?id=1sEnFTT_JGL1DUFZKmlQiEQ00RnAOqJsh)
+[AWS](https://drive.google.com/open?id=1Kg0SKRc3qHv15WNZ3K_Vf_9u7Mfg_X-R) , [Local](https://drive.google.com/open?id=1sEnFTT_JGL1DUFZKmlQiEQ00RnAOqJsh)
 
 It's deploed to AWS through Docker image. Link to server: http://ec2-52-34-171-107.us-west-2.compute.amazonaws.com:8080/
 - Please open in Chrome. GetUserMedia curently doesn't support FireFox.
