@@ -19,7 +19,9 @@ Video Links:
 [Local](https://drive.google.com/open?id=1sEnFTT_JGL1DUFZKmlQiEQ00RnAOqJsh)，[AWS](https://drive.google.com/open?id=1Kg0SKRc3qHv15WNZ3K_Vf_9u7Mfg_X-R)
 
 
-======I have stopped the AWS servers due to cost. Please refer to the video clips above. ======  
+============    
+
+I have stopped the AWS servers due to cost. Please refer to the video clips above for demonstration.     
 
 It's deploed to AWS through Docker image. Link to server: http://ec2-52-34-171-107.us-west-2.compute.amazonaws.com:8080/
 - Please open in Chrome. GetUserMedia curently doesn't support FireFox.
