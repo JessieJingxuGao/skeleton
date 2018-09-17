@@ -1,6 +1,7 @@
 
 
-A Digital Receipt Management System enabled by text recognition
+A Digital Receipt Management System enabled by text recognition   
+
 Circle CI Badge:  
 [![CircleCI](https://circleci.com/gh/JessieJingxuGao/skeleton.svg?style=svg)](https://circleci.com/gh/JessieJingxuGao/skeleton)
 
